@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>YOUR DIARY</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="~/assets/css/bootstrap.min.css" >
+
+	<link rel="stylesheet" href="~/assets/css/login.css" />
+	<script language="JavaScript">
+	var noviProzor = window.resizeTo(500,600);
+	</script>
+</head>
+<body>
+	<!--Form Login -->
+	<div class="container">
+		<h1 class="welcome text-center">Welcome to <br> Your Diary</h1>
+		<div class="card card-container">
+			<h2 class='login_title text-center'>Login</h2>
+			<hr>
+			
+			<form id="loginform" name="loginform" class="form-signin" method="get">
+				<span id="reauth-email" class="reauth-email"></span>
+				<p class="input_title">Username</p>
+				<input name="username" type="text" id="inputUsername" class="login_box" placeholder="abc123456" required autofocus>
+				<p class="input_title">Password</p>
+				<input name="pass" type="password" id="inputPassword" class="login_box" placeholder="******" required>
+				<div id="remember" class="checkbox">
+					<label></label>
+				</div>
+				 <button id="btnLogin" class="btn btn-lg btn-primary">Login</button> 
+			</form><!-- /form -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+
+
+	<!-- Insert this line above script imports  -->
+	 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script> 
+
+		<!-- DEV -->
+		<script src="~/assets/js/lib/jquery-1.12.4.min.js"></script>
+		<script src="~/assets/js/lib/bootstrap-3.3.7.min.js"></script>
+		<!-- /DEV -->
+		
+		<!-- PROD /
+		<script src="../bundles/lib-bundle.js"></script>
+		<!-- /PROD -->
+
+	<!-- Insert this line after script imports -->
+	 <script>if (window.module) module = window.module;</script> 
+
+	<script>
+		//* DEV
+		require('../dist/main/DefaultScreen');
+		require('../dist/main/DiaryWindow');
+		/* /DEV */
+
+		/*/ PROD
+		require('../bundles/frontend-bundle');
+		/* /PROD */
+	</script>
+
+</body>
+</html>

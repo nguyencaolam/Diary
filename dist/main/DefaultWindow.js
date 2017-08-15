@@ -3,10 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path = require("path");
 const electron_base_1 = require("electron-base");
+// This import is for TypeScript typing only, 
+// this line will be removed from output .js file,
+// hence the script in app.ts is not executed by this import.
+//import { ElectronSampleApp } from './app';
 class DefaultWindow extends electron_base_1.ElectronWindowBase {
     constructor(name) {
         super(name, {
-            triggerGlobalClose: true,
+            triggerGlobalClose: false,
             autoHideMenuBar: true,
             fullscreen: false,
             webPreferences: {
@@ -19,11 +23,8 @@ class DefaultWindow extends electron_base_1.ElectronWindowBase {
      * @override
      */
     start() {
-        this.native.maximize();
         this.render();
-        let app = this.app;
-        app.logger.error('A dummy error by DefaultWindow! Check out /logs/error.txt!');
-        app.doSomethingSpecial();
+        //	let app = <ElectronSampleApp>this.app;
     }
     readFile() {
         return new Promise((resolve, reject) => {
@@ -40,30 +41,23 @@ class DefaultWindow extends electron_base_1.ElectronWindowBase {
     saySomething() {
         return 'Only serializable JSON objects can only be passed with properties of primary types.';
     }
-    /**
-     * @override
-     */
-    onBlur() {
-        super.onBlur(); // ALWAYS call parent's method!
-        this.native.webContents.executeJavaScript('if(window.defaultScreen) window.defaultScreen.showOverlay()');
-    }
     render() {
         if (this.app.isDebug()) {
-            // Load view after dev tools has opened.
-            this.native.webContents
-                .on('devtools-opened', () => {
-                // Clear cache.
-                this.clearCache()
-                    .then(() => this.loadView('default.html'));
-            })
-                .openDevTools();
-        }
-        else {
-            this.setFullScreen(true);
-            // Same with: this.loadURL(`${global.appRoot}/views/default.html`);
-            this.loadView('default.html');
-            // Change view location: this._viewRoot = `${global.appRoot}/new-views/`;
-            // this.loadView('default.html') same with: this.loadURL(`${global.appRoot}/new-views/default.html`);
+            //Load view after dev tools has opened.
+            // 	this.native.webContents
+            // 		.on('devtools-opened', () => {
+            // 			// Clear cache.
+            // 			this.clearCache()
+            // 				.then(() => this.loadView('index.html'));
+            // 		})
+            // 		.openDevTools();
+            // } else {
+            // 	this.setFullScreen(true);
+            // 	// Same with: this.loadURL(`${global.appRoot}/views/default.html`);
+            this.loadView('index.html');
+            // 	// Change view location: this._viewRoot = `${global.appRoot}/new-views/`;
+            // 	// this.loadView('default.html') same with: this.loadURL(`${global.appRoot}/new-views/default.html`);
+            // }
         }
     }
 }

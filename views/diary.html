@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Your Diary</title>
+    <link rel="stylesheet" href="~/assets/css/skeleton.css">  
+  <!-- <link rel="stylesheet" href="~/assets/css/diary.css"> -->
+
+    <!-- <script type="text/javascript" src="~/assets/js/custom/diary.js"></script>   -->
+</head>
+<body>
+  <div class="container">
+	<h1> Welcome to Your Diary!!! </h1>
+	<h3>What did you do today?</h3>
+	
+    <div class="row">
+        <div class="five columns">
+		<input class="u-full-width"  id="lastname" placeholder="Date..." type="text" style="width: 200px" readonly>
+		<input class="u-full-width" placeholder="Text here..." id="firstname" type="text" style="width: 600px">
+		<span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" value="Add" id="add" >Add</button>
+      </span>
+	  </div>
+
+    </div>
+    <h3>History:</h3>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+           <th>Date</th>
+          <th>Diary</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tablebody">
+      </tbody>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    let remote = require('electron').remote;
+    document.addEventListener('keydown', function (e) {
+      if (e.which === 123) {
+        remote.getCurrentWindow().webContents.openDevTools();
+      } else if (e.which === 116) {
+        location.reload();
+      }
+    });
+</script>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script> 
+
+		<!-- DEV -->
+		<script src="~/assets/js/lib/jquery-1.12.4.min.js"></script>
+		<script src="~/assets/js/lib/bootstrap-3.3.7.min.js"></script>
+		<!-- /DEV -->
+		
+		<!-- PROD /
+		<script src="../bundles/lib-bundle.js"></script>
+		<!-- /PROD -->
+
+	<!-- Insert this line after script imports -->
+	 <script>if (window.module) module = window.module;</script> 
+
+	<script>
+		//* DEV
+		require('../dist/main/DiaryScreen');
+		/* /DEV */
+
+		/*/ PROD
+		require('../bundles/frontend-bundle');
+		/* /PROD */
+	</script>
+</body>
+</html>

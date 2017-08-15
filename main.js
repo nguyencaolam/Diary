@@ -1,5 +1,10 @@
+const electron = require('electron')
+const {app, BrowserWindow, Menu} = electron
+const path = require('path')
+const url = require('url')
+
 try {
-	const { ElectronSampleApp } = require('./dist/app');
+	const { ElectronSampleApp } = require('./dist/main/app');
 
 	// electron-builder and webpack handle the value of `__dirname`
 	// after they have bundled all source files. Therefore:
@@ -10,3 +15,5 @@ try {
 	console.error(ex);
 	process.exit();
 }
+
+

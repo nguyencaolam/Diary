@@ -6,7 +6,7 @@ import { ElectronWindowBase, BrowserWindowConstructorOptions } from 'electron-ba
 // This import is for TypeScript typing only, 
 // this line will be removed from output .js file,
 // hence the script in app.ts is not executed by this import.
-import { ElectronSampleApp } from '../app';
+//import { ElectronSampleApp } from './app';
 
 
 export class DefaultWindow 
@@ -14,7 +14,7 @@ export class DefaultWindow
 
 	constructor(name: string) {
 		super(name, {
-			triggerGlobalClose: true,
+			triggerGlobalClose: false,
 			autoHideMenuBar: true,
 			fullscreen: false,
 			webPreferences: {
@@ -29,12 +29,10 @@ export class DefaultWindow
 	 * @override
 	 */
 	public start(): void {
-		this.native.maximize();
+		
 		this.render();
 
-		let app = <ElectronSampleApp>this.app;
-		app.logger.error('A dummy error by DefaultWindow! Check out /logs/error.txt!');
-		app.doSomethingSpecial();
+	//	let app = <ElectronSampleApp>this.app;
 	}
 
 	public readFile(): Promise<string> {
@@ -54,33 +52,24 @@ export class DefaultWindow
 		return 'Only serializable JSON objects can only be passed with properties of primary types.';
 	}
 
-	/**
-	 * @override
-	 */
-	protected onBlur(): void {
-		super.onBlur(); // ALWAYS call parent's method!
-
-		this.native.webContents.executeJavaScript('if(window.defaultScreen) window.defaultScreen.showOverlay()');
-	}
-
-
 	private render(): void {
 		if (this.app.isDebug()) {
-			// Load view after dev tools has opened.
-			this.native.webContents
-				.on('devtools-opened', () => {
-					// Clear cache.
-					this.clearCache()
-						.then(() => this.loadView('default.html'));
-				})
-				.openDevTools();
-		} else {
-			this.setFullScreen(true);
+			//Load view after dev tools has opened.
+		// 	this.native.webContents
+		// 		.on('devtools-opened', () => {
+		// 			// Clear cache.
+		// 			this.clearCache()
+		// 				.then(() => this.loadView('index.html'));
+		// 		})
+		// 		.openDevTools();
+		// } else {
+		// 	this.setFullScreen(true);
 
-			// Same with: this.loadURL(`${global.appRoot}/views/default.html`);
-			this.loadView('default.html');
-			// Change view location: this._viewRoot = `${global.appRoot}/new-views/`;
-			// this.loadView('default.html') same with: this.loadURL(`${global.appRoot}/new-views/default.html`);
+		// 	// Same with: this.loadURL(`${global.appRoot}/views/default.html`);
+			this.loadView('index.html');
+		// 	// Change view location: this._viewRoot = `${global.appRoot}/new-views/`;
+		// 	// this.loadView('default.html') same with: this.loadURL(`${global.appRoot}/new-views/default.html`);
+		// }
+	}
 		}
 	}
-}

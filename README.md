@@ -10,6 +10,10 @@ Barebone template for Electron app. Copy this template to new repo and start add
 
 1. Start application: `npm start`
 
+1. Username for sign in: `lam`
+
+1. Password for sign in: `123`
+
 ## DEVELOPMENT
 
 * Transpile and watch for edit: `gulp watch`

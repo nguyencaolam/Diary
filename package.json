@@ -43,7 +43,9 @@
     }
   },
   "dependencies": {
-    "electron-base": "git+https://github.com/hirikarate/electron-base.git#0.2.0"
+    "electron-base": "git+https://github.com/hirikarate/electron-base.git#0.2.0",
+    "electron-window-manager": "^1.0.4",
+    "nedb": "^1.8.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.2.6",
